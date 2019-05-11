@@ -13,6 +13,7 @@
   "dependencies": {
     "@ant-design/react-native": "^3.1.7",
     "@expo/samples": "2.1.1",
+    "axios": "^0.18.0",
     "expo": "^32.0.0",
     "expokit": "32.1.1",
     "react": "16.5.0",

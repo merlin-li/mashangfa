@@ -116,7 +116,7 @@ export default class HomeScreen extends React.Component {
 
                   <View style={styles.product}>
                     <View>
-                      <Image source={item.logo} style={styles.product__logo} />
+                      <Image source={{url: item.logo}} style={styles.product__logo} />
                     </View>
 
                     <View style={styles.product__middle}>
