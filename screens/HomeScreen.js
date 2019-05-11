@@ -12,12 +12,17 @@ import {
 import { WebBrowser } from 'expo';
 import homeData from '../services/data/home';
 // import { Button } from '@ant-design/react-native';
+import { get }  from  '../services/utils/fetch';
 
 const appLogos = {
   chentaibao: require('../assets/images/app/chentaibao.png'),
   suiyifang: require('../assets/images/app/suiyifang.png'),
   xiguajinrong: require('../assets/images/app/xiguajinrong.png'),
 };
+
+const APIUrl = {
+  appList: 'http://47.111.188.234:8890/api/app_list',
+}
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -43,6 +48,17 @@ export default class HomeScreen extends React.Component {
     this.state = {
       appData: homeData
     }
+  }
+
+  componentDidMount() {
+    get(APIUrl.appList).then(res => {
+      if (+res.status === 200) {
+        const { data } = res;
+        this.setState({
+          appData: data
+        });
+      }
+    });
   }
 
   openUrl = (item, url) => {
@@ -100,7 +116,7 @@ export default class HomeScreen extends React.Component {
 
                   <View style={styles.product}>
                     <View>
-                      <Image source={appLogos[item.logo]} style={styles.product__logo} />
+                      <Image source={item.logo} style={styles.product__logo} />
                     </View>
 
                     <View style={styles.product__middle}>
